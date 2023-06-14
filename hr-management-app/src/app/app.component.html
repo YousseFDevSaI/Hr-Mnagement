@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Resources</title>
+</head>
+<body>
+  <div>
+    <h1>Welcome to HR Management Application</h1>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/branches">Manage Branches</a>
+        </li>
+        <li>
+          <a routerLink="/employees">Manage Employees</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+</body>
+</html>

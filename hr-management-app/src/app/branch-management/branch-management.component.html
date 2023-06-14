@@ -1,0 +1,70 @@
+<h2>Branch Management</h2>
+
+<div *ngIf="branches">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Building Number</th>
+        <th>Street</th>
+        <th>Area</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Manager</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of branches">
+        <td>{{ branch.name }}</td>
+        <td>{{ branch.building_number }}</td>
+        <td>{{ branch.street }}</td>
+        <td>{{ branch.area }}</td>
+        <td>{{ branch.city }}</td>
+        <td>{{ branch.country }}</td>
+        <td>{{ branch.manager?.name }}</td>
+        <td>
+          <button (click)="editBranch(branch)">Edit</button>
+          <button (click)="deleteBranch(branch)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="selectedBranch">
+  <h3>{{ editing ? 'Edit Branch' : 'Create Branch' }}</h3>
+  <form (ngSubmit)="saveBranch()">
+    <div>
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="selectedBranch.name" name="name" required>
+    </div>
+    <div>
+      <label>Building Number:</label>
+      <input type="text" [(ngModel)]="selectedBranch.building_number" name="buildingNumber" required>
+    </div>
+    <div>
+      <label>Street:</label>
+      <input type="text" [(ngModel)]="selectedBranch.street" name="street" required>
+    </div>
+    <div>
+      <label>Area:</label>
+      <input type="text" [(ngModel)]="selectedBranch.area" name="area" required>
+    </div>
+    <div>
+      <label>City:</label>
+      <input type="text" [(ngModel)]="selectedBranch.city" name="city" required>
+    </div>
+    <div>
+      <label>Country:</label>
+      <input type="text" [(ngModel)]="selectedBranch.country" name="country" required>
+    </div>
+    <div *ngIf="editing">
+      <label>Manager:</label>
+      <select [(ngModel)]="selectedBranch.manager" name="manager">
+        <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.name }}</option>
+      </select>
+    </div>
+    <button type="submit">{{ editing ? 'Update' : 'Create' }}</button>
+  </form>
+</div>
